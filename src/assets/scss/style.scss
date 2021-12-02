@@ -1,0 +1,359 @@
+@import "common/common";
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.leftbar {
+    flex: 0 0 120px;
+    // filter: drop-shadow(0px 2px 8px #C9D1DE);
+
+    &__header {
+        background-color: #8790dc;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        padding: 20px 0;
+        height: 60px;
+
+        h3 {
+        }
+    }
+
+    nav {
+        height: calc(100% - 60px);
+        .nav-list {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+
+            &__item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 25px 0;
+                position: relative;
+                cursor: pointer;
+                user-select: none;
+
+                &:last-child {
+                    margin-top: auto;
+                }
+
+                &:hover {
+                    &::before {
+                        opacity: 1;
+                        transition: opacity 0.3s;
+                    }
+                }
+
+                &::before {
+                    content: "";
+                    width: 3px;
+                    height: 100%;
+                    background: linear-gradient(180deg, #9ea7fc 0%, #65b6f7 100%);
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    opacity: 0;
+                }
+
+                span {
+                    margin-top: 6px;
+                    font-size: 0.875em;
+                    color: #b7bec7;
+                }
+            }
+        }
+    }
+}
+
+.main-window {
+    flex: 0 1 100%;
+
+    .toolbar {
+        height: 60px;
+        background: linear-gradient(90deg, #9ea7fc 0%, #65b6f7 124.87%);
+        display: flex;
+        align-items: center;
+
+        .search-input {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+
+            &__icon {
+            }
+
+            input {
+                background: transparent;
+                color: #fff;
+                outline: none;
+                /* border: 1px solid; */
+                font-size: 0.875em;
+                margin-left: 10px;
+                &::placeholder {
+                    color: inherit;
+                }
+            }
+        }
+
+        .toolbar-controls {
+            margin-left: auto;
+            display: flex;
+            height: 100%;
+
+            button {
+                width: 60px;
+                background: transparent;
+                border-right: 1px solid #ffffff40;
+                padding: 0;
+                cursor: pointer;
+                &:hover {
+                    background: #6d87e636;
+                }
+            }
+
+            .noty-btn {
+                position: relative;
+            }
+            .noty-btn::before {
+                right: 0;
+                top: 0;
+                content: "";
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background: #a1ffff;
+                box-shadow: 0px 0px 10px #a1ffff;
+                border-radius: 50%;
+                top: 13px;
+                right: 15px;
+            }
+        }
+
+        .current-user {
+            padding: 0 40px 0 20px;
+            display: flex;
+            .current-user__name {
+                color: #fff;
+                font-weight: 400;
+                align-self: center;
+                margin-right: 20px;
+            }
+
+            .current-user__icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                overflow: hidden;
+                img {
+                    display: block;
+                    object-fit: cover;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    .board-wrapper {
+        background: #eef2f9;
+        height: 100%;
+        padding: 40px;
+
+        .board__header {
+            .board__select {
+            }
+
+            .board-members {
+                .members-list {
+                    &__item {
+                    }
+                }
+
+                .add-new-member {
+                }
+            }
+        }
+        .boards-list {
+            min-height: calc(100% - 102px);
+            overflow: auto;
+            display: flex;
+            align-items: baseline;
+
+            .board + .board {
+                margin-left: 10px;
+            }
+
+            .board {
+                position: relative;
+                width: 280px;
+                background: #edeff1;
+                box-shadow: 0px 0px 10px #d2d7e0;
+                border-radius: 5px;
+                overflow: hidden;
+                padding: 0 10px 20px;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    height: 4px;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    background: linear-gradient(133.98deg, #c781ff -18.23%, #e57373 125.36%);
+                }
+
+                .task-list {
+                    &__header {
+                        padding: 1.125em 0;
+
+                        h3 {
+                            font-size: 1.25em;
+                            font-weight: 400;
+                            color: #707090;
+                        }
+                    }
+
+                    .task-cards-hover-wrapper {
+                        height: 100%;
+                        background: #00000066;
+                        width: 100%;
+                        position: absolute;
+                        border-radius: 7px;
+                    }
+                    .task-cards {
+                        .task-card + .task-card {
+                            margin-top: 10px;
+                        }
+                        .task-card {
+                            background: #ffffff;
+                            border-radius: 5px;
+                            padding: 10px;
+
+                            &__header {
+                                .task-priority {
+                                    display: inline-block;
+                                    text-align: center;
+                                    padding: 5px;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size: 0.75em;
+                                    width: 85px;
+                                    background: linear-gradient(134.34deg, #9ea7fc 0%, #65b6f7 114.98%);
+                                }
+                            }
+
+                            &__body {
+                                padding: 0.75em 0;
+                                .task-text {
+                                    color: #707090;
+                                }
+                            }
+
+                            &__footer {
+                                display: flex;
+                                align-items: center;
+
+                                .left-badges {
+                                    display: flex;
+                                    align-items: center;
+                                    font-size: 0.875em;
+                                    color: #9898ae;
+                                    button {
+                                        padding: 0;
+                                        outline: none;
+                                        background: transparent;
+                                        cursor: pointer;
+                                        img {
+                                            display: block;
+                                        }
+                                    }
+                                    .comments {
+                                        display: flex;
+                                        align-items: center;
+                                        margin-right: 15px;
+                                        &__icon {
+                                        }
+
+                                        &__count {
+                                        }
+                                    }
+
+                                    .attachments {
+                                        display: flex;
+                                        align-items: center;
+                                        &__icon {
+                                        }
+
+                                        &__count {
+                                        }
+                                    }
+                                }
+
+                                .right-badges {
+                                    display: flex;
+                                    margin-left: auto;
+                                    .add-new-member {
+                                        outline: none;
+                                        background: transparent;
+                                        width: 30px;
+                                        height: 30px;
+                                        border: 1px dashed;
+                                        border-radius: 50%;
+                                        font-size: 1.5em;
+                                        color: #9898ae;
+                                        font-weight: 300;
+                                        margin-right: 10px;
+                                        cursor: pointer;
+                                    }
+
+                                    .card-author {
+                                        width: 30px;
+                                        height: 30px;
+                                        border-radius: 50%;
+                                        overflow: hidden;
+
+                                        img {
+                                            display: block;
+                                            width: 100%;
+                                            height: auto;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &__footer {
+                        display: flex;
+                        justify-content: center;
+                        padding-top: 20px;
+                        .add-new-task {
+                            cursor: pointer;
+                            color: #32325d;
+                        }
+                    }
+                }
+            }
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #9ea7fc 0%, #65b6f7 100%);
+            filter: drop-shadow(0px 10px 10px rgba(74, 144, 226, 0.25));
+            color: #fff;
+            border-radius: 50%;
+            font-size: 40px;
+            font-weight: 300;
+            position: absolute;
+            right: 50px;
+            bottom: 80px;
+        }
+    }
+}

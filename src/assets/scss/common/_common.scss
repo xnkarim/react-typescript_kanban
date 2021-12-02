@@ -1,0 +1,52 @@
+@import "_normalize.scss";
+@import "_variables.scss";
+// @import "_fonts.scss";
+
+// @mixin font-museo-light {
+//   font-family: 'Museo Sans 300 Light', sans-serif;
+// }
+
+// @mixin font-museo-normal {
+//   font-family: 'Museo Sans 500 Medium', sans-serif;
+// }
+
+// @mixin font-museo-bold {
+//   font-family: 'Museo Sans 700 Bold', sans-serif;
+// }
+
+// @mixin font-proxima {
+//   font-family: 'Proxima Nova Extra Bold';
+// }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root{
+  height: 100vh;
+}
+
+body {
+  color: $main-color;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  color: $black;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

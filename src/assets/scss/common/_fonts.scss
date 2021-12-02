@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'Museo Sans 300 Light';
+    src: url('./fonts/museo300/MuseoSansCyrl-300.eot');
+    src: url('./fonts/museo300/MuseoSansCyrl-300.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/museo300/MuseoSansCyrl-300.woff') format('woff'),
+    url('./fonts/museo300/MuseoSansCyrl-300.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  // .box-name {font-family: 'Museo Sans 300 Light';}
+  
+  @font-face {
+    font-family: 'Museo Sans 500 Medium';
+    src: url('./fonts/museo500/MuseoSansCyrl-500.eot');
+    src: url('./fonts/museo500/MuseoSansCyrl-500.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/museo500/MuseoSansCyrl-500.woff') format('woff'),
+    url('./fonts/museo500/MuseoSansCyrl-500.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+    
+  // .box-name {font-family: 'Museo Sans 500 Medium';}
+  
+  @font-face {
+    font-family: 'Museo Sans 700 Bold';
+    src: url('./fonts/museo700/MuseoSansCyrl-700.eot');
+    src: url('./fonts/museo700/MuseoSansCyrl-700.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/museo700/MuseoSansCyrl-700.woff') format('woff'),
+    url('./fonts/museo700/MuseoSansCyrl-700.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+      
+  // .box-name {font-family: 'Museo Sans 700 Bold';}
+  
+  
+  @font-face {
+    font-family: 'Proxima Nova Extra Bold';
+    src: url('./fonts/proxima/ProximaNova-Extrabld.eot');
+    src: url('./fonts/proxima/ProximaNova-Extrabld.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/proxima/ProximaNova-Extrabld.woff') format('woff'),
+    url('./fonts/proxima/ProximaNova-Extrabld.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  // .box-name {font-family: 'Proxima Nova Extra Bold';}
+  
+  
+  // @font-face {
+  //   font-family: 'Poppins Bold';
+  //   src: url('./fonts/poppins/Poppins-Bold.eot');
+  //   src: url('./fonts/poppins/Poppins-Bold.eot?#iefix') format('embedded-opentype'),
+  //   url('./fonts/poppins/Poppins-Bold.woff') format('woff'),
+  //   url('./fonts/poppins/Poppins-Bold.ttf') format('truetype');
+  //   font-weight: normal;
+  //   font-style: normal;
+  // }
+    
+  // .box-name {font-family: 'Poppins Bold';}
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: local('Poppins Bold'), 
+    local('./fonts/poppins/Poppins-Bold'), 
+    url('./fonts/poppins/Poppinsbold.woff2') format('woff2'), 
+    url('./fonts/poppins/Poppinsbold.woff') format('woff'), 
+    url('./fonts/poppins/Poppinsbold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
