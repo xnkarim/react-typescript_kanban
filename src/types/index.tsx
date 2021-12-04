@@ -1,10 +1,13 @@
 export type Task = {
-    id: number,
+    id: string,
     text: string
 }
 
-export type BoardInfo = {
-    id: number,
+export type Boards = {
     title: string,
     tasks: Task[]
+}
+
+export type BoardsList = {
+    [key: string]: Boards
 }

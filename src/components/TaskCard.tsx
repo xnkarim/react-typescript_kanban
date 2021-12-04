@@ -1,10 +1,19 @@
+import React, { FC } from 'react';
+import cn from 'classnames';
+import { ReactComponent as Comment } from 'src/assets/icons/comment.svg';
+import { ReactComponent as Attachment } from 'src/assets/icons/attachment.svg';
+import AvatarPng from 'src/assets/icons/avatar.png';
+
 type TaskCardProps = {
-    text: string
+    text: string,
+    isDragging: boolean
 }
 
-const TaskCard = ({ text }: TaskCardProps) => {
+const TaskCard: FC<TaskCardProps> = ({ text, isDragging }) => {
     return (
-        <div className="task-card" draggable={true}>
+        <div className={cn("task-card", {
+            "task-card--dragging": isDragging
+        })} draggable={true}>
             <div className="task-card__header">
                 <div className="task-priority">
                     Low priority
@@ -16,24 +25,24 @@ const TaskCard = ({ text }: TaskCardProps) => {
                 </p>
             </div>
             <div className="task-card__footer">
-                {/* <div className="left-badges">
+                <div className="left-badges">
                     <div className="comments">
                         <button>
-                            <img className="comments__icon" src="./images/comment.svg" alt="comment" />
+                            <Comment />
                         </button>
                         <span className="comments__count">2</span>
                     </div>
                     <div className="attachements">
                         <button>
-                            <img className="attachments__icon" src="./images/attachment.svg" alt="attachment" />
+                            <Attachment />
                         </button>
                         <span className="attachments__count">3</span>
                     </div>
-                </div> */}
+                </div>
                 <div className="right-badges">
                     <button className="add-new-member">+</button>
                     <div className="card-author">
-                        <img src="./images/avatar.png" alt="" />
+                        <img src={AvatarPng} alt="avatar" />
                     </div>
                 </div>
             </div>

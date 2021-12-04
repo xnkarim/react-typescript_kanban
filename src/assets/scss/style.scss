@@ -31,13 +31,21 @@
             flex-direction: column;
 
             &__item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding: 25px 0;
                 position: relative;
-                cursor: pointer;
-                user-select: none;
+                & a {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 25px 0;
+                    cursor: pointer;
+                    user-select: none;
+                    &.active span{
+                        color: #8796dc;
+                    }
+                    &.active path {
+                        fill: #8796dc;
+                    }
+                }
 
                 &:last-child {
                     margin-top: auto;
@@ -164,6 +172,7 @@
         background: #eef2f9;
         height: 100%;
         padding: 40px;
+        overflow: scroll;
 
         .board__header {
             .board__select {
@@ -234,6 +243,13 @@
                             background: #ffffff;
                             border-radius: 5px;
                             padding: 10px;
+                            transform: rotate(0deg);
+                            transition: all 0.5s;
+
+                            &--dragging {
+                                transform: rotate(8deg);
+                                box-shadow: 1px 9px 21px 0px rgba(34, 60, 80, 0.2);
+                            }
 
                             &__header {
                                 .task-priority {
