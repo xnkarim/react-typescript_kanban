@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable, DraggableProvided, DraggableStateSnapshot } from "react-beautiful-dnd";
 import { Task } from "src/types";
 import TaskCard from "./TaskCard";
 
@@ -12,7 +12,7 @@ const TaskCards: FC<TaskCardsProps> = ({ tasks }) => {
         <>
             {tasks.map(({ id, text }: Task, index: number) => (
                 <Draggable key={id} draggableId={id} index={index}>
-                    {(provided, snapshot) => (
+                    {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
                         <div
                             ref={provided.innerRef}
                             {...provided.draggableProps}

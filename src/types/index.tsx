@@ -3,11 +3,12 @@ export type Task = {
     text: string
 }
 
-export type Boards = {
+export type Column = {
+    id: string,
     title: string,
     tasks: Task[]
 }
 
-export type BoardsList = {
-    [key: string]: Boards
+export type Columns = {
+    [key: string]: Column
 }

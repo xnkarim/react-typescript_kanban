@@ -188,17 +188,17 @@
                 }
             }
         }
-        .boards-list {
+        .columns {
             min-height: calc(100% - 102px);
             overflow: auto;
             display: flex;
             align-items: baseline;
 
-            .board + .board {
+            .column + .column {
                 margin-left: 10px;
             }
 
-            .board {
+            .column {
                 position: relative;
                 width: 280px;
                 background: #edeff1;
