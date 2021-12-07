@@ -8,13 +8,16 @@ type ColumnProps = {
     id: string,
     title: string,
     tasks: Task[],
-    index: number
+    index: number,
+    addTask: (columnId: string) => void,
+    editTaskText: (columnId: string, taskId: string, text: string) => void
+    deleteTask: (columnId: string, taskId: string) => void
 }
 
-const Column: FC<ColumnProps> = ({ id, title, tasks, index }) => {
+const Column: FC<ColumnProps> = ({ id, title, tasks, index, addTask, editTaskText, deleteTask }) => {
     return (
         <Draggable key={id} draggableId={id} index={index}>
-            {(provided:DraggableProvided) => (
+            {(provided: DraggableProvided) => (
                 <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
@@ -31,8 +34,16 @@ const Column: FC<ColumnProps> = ({ id, title, tasks, index }) => {
                                     <h3>{title}</h3>
                                 </div>
                                 <div className="task-cards">
-                                    <TaskCards tasks={tasks} />
+                                    <TaskCards
+                                        columnId={id}
+                                        tasks={tasks}
+                                        editTaskText={editTaskText}
+                                        deleteTask={deleteTask}
+                                    />
                                     {provided.placeholder}
+                                </div>
+                                <div className="task-list__footer">
+                                    <button onClick={() => addTask(id)} className="add-new-task">Add task +</button>
                                 </div>
                             </div>
                         )}
@@ -44,4 +55,4 @@ const Column: FC<ColumnProps> = ({ id, title, tasks, index }) => {
     );
 }
 
-export default Column;
+export default React.memo(Column);

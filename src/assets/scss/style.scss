@@ -39,7 +39,7 @@
                     padding: 25px 0;
                     cursor: pointer;
                     user-select: none;
-                    &.active span{
+                    &.active span {
                         color: #8796dc;
                     }
                     &.active path {
@@ -80,7 +80,7 @@
 }
 
 .main-window {
-    flex: 0 1 100%;
+    width: calc(100% - 120px);
 
     .toolbar {
         height: 60px;
@@ -170,8 +170,7 @@
 
     .board-wrapper {
         background: #eef2f9;
-        height: 100%;
-        padding: 40px;
+        height: calc(100vh - 60px);
         overflow: scroll;
 
         .board__header {
@@ -189,10 +188,9 @@
             }
         }
         .columns {
-            min-height: calc(100% - 102px);
-            overflow: auto;
             display: flex;
             align-items: baseline;
+            padding: 40px;
 
             .column + .column {
                 margin-left: 10px;
@@ -206,6 +204,7 @@
                 border-radius: 5px;
                 overflow: hidden;
                 padding: 0 10px 20px;
+                flex-shrink: 0;
 
                 &::before {
                     content: "";
@@ -252,6 +251,7 @@
                             }
 
                             &__header {
+                                display: flex;
                                 .task-priority {
                                     display: inline-block;
                                     text-align: center;
@@ -262,12 +262,31 @@
                                     width: 85px;
                                     background: linear-gradient(134.34deg, #9ea7fc 0%, #65b6f7 114.98%);
                                 }
+
+                                .edit-controls {
+                                    margin-left: auto;
+                                }
+
+                                .edit-btn {
+                                    background-color: transparent;
+                                    outline: none;
+                                    cursor: pointer;
+                                }
                             }
 
                             &__body {
                                 padding: 0.75em 0;
                                 .task-text {
                                     color: #707090;
+                                }
+
+                                textarea {
+                                    outline: none;
+                                    color: #707090;
+                                    border: none;
+                                    padding: 0;
+                                    width: 100%;
+                                    resize: none;
                                 }
                             }
 
@@ -370,6 +389,12 @@
             position: absolute;
             right: 50px;
             bottom: 80px;
+            outline: none;
         }
     }
+}
+
+.hidden {
+    visibility: hidden;
+    height: 0;
 }

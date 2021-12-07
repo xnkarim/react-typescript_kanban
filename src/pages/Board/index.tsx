@@ -1,8 +1,27 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { DragDropContext, DraggableLocation, Droppable, DroppableProvided, DropResult } from 'react-beautiful-dnd';
 import ColumnComponent from 'src/components/Column';
 import { COLUMN, TASK } from 'src/constants';
 import { Column, Task } from 'src/types';
+
+
+const reorder = (list: any[], startIndex: number, endIndex: number) => {
+    const listCopy = [...list];
+    const [removed] = listCopy.splice(startIndex, 1);
+    listCopy.splice(endIndex, 0, removed);
+
+    return listCopy;
+};
+
+const move = (source: Task[], destination: Task[], droppableSource: DraggableLocation, droppableDestination: DraggableLocation) => {
+    const sourceClone = [...source];
+    const destClone = [...destination];
+
+    const [removed] = sourceClone.splice(droppableSource.index, 1);
+    destClone.splice(droppableDestination.index, 0, removed);
+
+    return [sourceClone, destClone];
+};
 
 const Board = () => {
     const [columns, setColumns] = useState<Column[]>(
@@ -51,23 +70,32 @@ const Board = () => {
             }
         ])
 
-    const reorder = (list: any[], startIndex: number, endIndex: number) => {
-        const listCopy = [...list];
-        const [removed] = listCopy.splice(startIndex, 1);
-        listCopy.splice(endIndex, 0, removed);
+    const addColumn = () => {
+        const newLength = columns.length + 1;
 
-        return listCopy;
-    };
+        setColumns(columns => [...columns, {
+            id: 'column_' + (newLength),
+            title: 'column_' + (newLength),
+            tasks: []
+        }])
+    }
 
-    const move = (source: Task[], destination: Task[], droppableSource: DraggableLocation, droppableDestination: DraggableLocation) => {
-        const sourceClone = [...source];
-        const destClone = [...destination];
+    const addTask = useCallback((columnId: string) => {
+        const columnsCopy = [...columns];
+        const column = columnsCopy.find(col => col.id === columnId);
 
-        const [removed] = sourceClone.splice(droppableSource.index, 1);
-        destClone.splice(droppableDestination.index, 0, removed);
+        if (!column)
+            return;
 
-        return [sourceClone, destClone];
-    };
+        const newLength = column.tasks.length + 1;
+
+        column.tasks = [...column.tasks, {
+            id: `${columnId}_task_${newLength}`,
+            text: 'Hello ' + newLength
+        }];
+
+        setColumns(columnsCopy);
+    }, [columns])
 
     const onDragEnd = (result: DropResult) => {
         const source: DraggableLocation = result.source;
@@ -141,6 +169,41 @@ const Board = () => {
         }
     }
 
+    const editTaskText = (columnId: string, taskId: string, text: string) => {
+        setColumns((columns: Column[]) => {
+            const columnsCopy = [...columns];
+
+            const targetColumn = columns.find(col => col.id === columnId);
+
+            if (!targetColumn)
+                return columns;
+
+            const editedTask = targetColumn.tasks.find(task => task.id === taskId);
+
+            if (!editedTask)
+                return columns;
+
+            editedTask.text = text;
+
+            return columnsCopy;
+        })
+    }
+
+    const deleteTask = (columnId: string, taskId: string) => {
+        setColumns((columns: Column[]) => {
+            const columnsCopy = [...columns];
+
+            const targetColumn = columns.find(col => col.id === columnId);
+
+            if (!targetColumn)
+                return columns;
+
+            targetColumn.tasks = targetColumn.tasks.filter(task => task.id !== taskId);
+
+            return columnsCopy;
+        })
+    }
+
     return (
         <div className="board-wrapper">
             <div className="board__header">
@@ -172,7 +235,16 @@ const Board = () => {
                                 {...provided.droppableProps}
                             >
                                 {
-                                    columns.map(({ id, title, tasks }, i) => <ColumnComponent key={id} index={i} id={id} title={title} tasks={tasks} />)
+                                    columns.map(({ id, title, tasks }, i) => <ColumnComponent
+                                        key={id}
+                                        index={i}
+                                        id={id}
+                                        title={title}
+                                        tasks={tasks}
+                                        addTask={addTask}
+                                        editTaskText={editTaskText}
+                                        deleteTask={deleteTask}
+                                    />)
                                 }
                             </div>
                         )
@@ -180,7 +252,7 @@ const Board = () => {
 
                 </Droppable>
             </DragDropContext>
-            <button className="float-btn">+</button>
+            <button onClick={addColumn} className="float-btn">+</button>
         </div>
     );
 }

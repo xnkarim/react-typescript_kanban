@@ -5,9 +5,12 @@ import TaskCard from "./TaskCard";
 
 type TaskCardsProps = {
     tasks: Task[],
+    columnId: string,
+    editTaskText: (columnId: string, taskId: string, text: string) => void
+    deleteTask: (columnId: string, taskId: string) => void
 }
 
-const TaskCards: FC<TaskCardsProps> = ({ tasks }) => {
+const TaskCards: FC<TaskCardsProps> = ({ tasks, editTaskText, columnId, deleteTask }) => {
     return (
         <>
             {tasks.map(({ id, text }: Task, index: number) => (
@@ -22,7 +25,12 @@ const TaskCards: FC<TaskCardsProps> = ({ tasks }) => {
                                 marginBottom: 8
                             }}
                         >
-                            <TaskCard text={text} isDragging={snapshot.isDragging} />
+                            <TaskCard
+                                text={text}
+                                isDragging={snapshot.isDragging}
+                                editTaskText={(text) => editTaskText(columnId, id, text)}
+                                deleteTask={() => deleteTask(columnId, id)}
+                            />
                         </div>
                     )}
                 </Draggable>
